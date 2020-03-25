@@ -1,7 +1,6 @@
 # Passos para rodar o Consul localmente
 
-## Esse passo está sendo feito assim por conta de limitações do docker no mac!
-### Já estamos procurando soluções para rodar usando somente containers
+### Esse passo está sendo feito sem o uso do docker de limitações de network! <br/> Já estamos procurando soluções para rodar usando somente containers.
 
 ## Baixar Consul, Envoy e Node
 
