@@ -1,2 +1,12 @@
+istio-k8s/techleadsapi/.idea
+istio-k8s/techleadsapi/.mvn
+istio-k8s/techleadsapi/target
+istio-k8s/techleadsapi/*.iml
+
+istio-k8s/techleadsintegration/.idea
+istio-k8s/techleadsintegration/.mvn
+istio-k8s/techleadsintegration/target
+istio-k8s/techleadsintegration/*.iml
+
 node_modules
 .DS_Store
