@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "1cafaf66-4a37-4310-93ea-99b464c9d466",
+		"name": "techleads",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test splitter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28d1043a-b1ae-462b-b202-2bcdeb7e9205",
+						"exec": [
+							"pm.test(\"version is v1\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"one world\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-debug",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3002",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"query": [
+						{
+							"key": "x-debug",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Config Router",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kind\": \"service-router\",\n  \"name\": \"servicenode\",\n  \"routes\": [\n    {\n      \"match\": {\n        \"http\": {\n          \"header\": [\n            {\n              \"name\": \"x-debug\",\n              \"exact\": \"1\"\n            }\n          ]\n        }\n      },\n      \"destination\": {\n        \"service\": \"servicenode\",\n        \"service_subset\": \"v1\"\n      }\n    },\n    {\n      \"destination\": {\n        \"service\": \"servicenode\",\n        \"service_subset\": \"v2\"\n      }\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8500/v1/config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8500",
+					"path": [
+						"v1",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete splitter",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8500/v1/config/service-splitter/servicenode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8500",
+					"path": [
+						"v1",
+						"config",
+						"service-splitter",
+						"servicenode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Config Splitter",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kind\": \"service-splitter\",\n  \"name\": \"servicenode\",\n  \"splits\": [\n    {\n      \"weight\": 1,\n      \"service_subset\": \"v1\"\n    },\n    {\n      \"weight\": 99,\n      \"service_subset\": \"v2\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8500/v1/config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8500",
+					"path": [
+						"v1",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete router",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8500/v1/config/service-router/servicenode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8500",
+					"path": [
+						"v1",
+						"config",
+						"service-router",
+						"servicenode"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
