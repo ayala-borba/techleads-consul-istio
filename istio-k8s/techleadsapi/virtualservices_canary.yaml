@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: techleadsapi
+  namespace: techleads
+spec:
+  hosts:
+    - techleadsapi
+  http:
+    - route:
+      - destination:
+          host: techleadsapi
+          subset: v1
+        weight: 50
+      - destination:
+          host: techleadsapi
+          subset: v2
+        weight: 50
