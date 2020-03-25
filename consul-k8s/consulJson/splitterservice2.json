@@ -1,6 +1,6 @@
 {
   "kind": "service-splitter",
-  "name": "service2",
+  "name": "servicenode",
   "splits": [
     {
       "weight": 90,
