@@ -15,6 +15,8 @@ https://www.getenvoy.io/install/envoy/macos/
 instale o NVM
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+nvm install --lts
 ```
 
 Copie o binário do consul para /usr/local/bin e estamos prontos para começar.
@@ -30,6 +32,7 @@ Perceba que ele tentou configurar uma série de serviços sem sucesso, vamos dei
 Dentro da pasta servicenode rode o seguinte comando em uma aba do seu terminal e deixe rodando:
 
 ```sh
+npm install
 node index.js
 ```
 
@@ -41,6 +44,7 @@ node indexv2.js
 
 E a mesma coisa na pasta servicegetter:
 ```sh
+npm install
 node index.js
 ```
 
