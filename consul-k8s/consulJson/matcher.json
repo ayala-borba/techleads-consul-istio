@@ -1,0 +1,28 @@
+{
+  "kind": "service-router",
+  "name": "service2",
+  "routes": [
+    {
+      "match": {
+        "http": {
+          "header": [
+            {
+              "name": "x-debug",
+              "exact": "1"
+            }
+          ]
+        }
+      },
+      "destination": {
+        "service": "service2",
+        "service_subset": "v2"
+      }
+    },
+    {
+      "destination": {
+        "service": "service2",
+        "service_subset": "v1"
+      }
+    }
+  ]
+}

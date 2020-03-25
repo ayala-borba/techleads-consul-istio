@@ -1,0 +1,13 @@
+{
+  "kind": "service-resolver",
+  "name": "service2",
+  "default_subset": "v1",
+  "subsets": {
+    "v1": {
+      "filter": "Service.Meta.version == v1"
+    },
+    "v2": {
+      "filter": "Service.Meta.version == v2"
+    }
+  }
+}

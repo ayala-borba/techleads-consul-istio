@@ -1,0 +1,8 @@
+{
+  "kind": "proxy-defaults",
+  "name": "global",
+  "namespace": "default",
+  "config": {
+    "protocol": "http"
+  }
+}
