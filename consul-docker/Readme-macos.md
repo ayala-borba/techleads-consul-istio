@@ -32,6 +32,7 @@ Perceba que ele tentou configurar uma série de serviços sem sucesso, vamos dei
 Dentro da pasta servicenode rode o seguinte comando em uma aba do seu terminal e deixe rodando:
 
 ```sh
+npm install
 node index.js
 ```
 
@@ -43,6 +44,7 @@ node indexv2.js
 
 E a mesma coisa na pasta servicegetter:
 ```sh
+npm install
 node index.js
 ```
 
