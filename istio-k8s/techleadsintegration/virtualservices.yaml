@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: techleadsintegration
+  namespace: techleads
+spec:
+  hosts:
+    - techleadsintegration
+  http:
+    - match:
+        - headers:
+            x-debug:
+              exact: "1"
+      route:
+        - destination:
+            host: techleadsintegration
+            subset: version1
+    - route:
+      - destination:
+          host: techleadsintegration
+          subset: version1

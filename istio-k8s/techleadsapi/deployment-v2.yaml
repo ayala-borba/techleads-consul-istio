@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techleadsapiv2
+  namespace: techleads
+  labels:
+    app: techleadsapi
+    version: version2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techleadsapi
+      version: version2
+  template:
+    metadata:
+      labels:
+        app: techleadsapi
+        version: version2
+    spec:
+      containers:
+      - name: techleadsapi
+        image: techleadsapi:version2
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
