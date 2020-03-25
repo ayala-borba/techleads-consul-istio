@@ -66,7 +66,7 @@ config_entries {
     name = "servicenode"
     routes = [
         {
-            match {
+          match {
             http {
                 header = [
                 {
