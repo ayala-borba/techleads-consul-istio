@@ -8,7 +8,7 @@ class TechLeadsController {
 
     @GetMapping("/")
     fun helloWorld(): String {
-        return "Returning hello world from version 2"
+        return "Returning hello world from version 1"
     }
 
 }
