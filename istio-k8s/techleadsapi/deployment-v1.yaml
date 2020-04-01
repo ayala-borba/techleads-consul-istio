@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: techleadsapi
-        image: techleadsapi:version1
+        image: emiteze/techleadsapi:version1
         imagePullPolicy: Never
         ports:
         - containerPort: 8080

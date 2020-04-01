@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: techleadsintegrationv1
-        image: techleadsintegration:version1
+        image: emiteze/techleadsintegration:version1
         imagePullPolicy: Never
         ports:
         - containerPort: 8081
