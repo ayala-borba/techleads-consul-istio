@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: techleads-example
+    service: techleads-example
+  name: techleads-example
+  namespace: namespacea
+spec:  
+  type: ClusterIP
+  # acesso apenas por port-forward
+  
+  # type: NodePort
+  # veja o IP do seu cluster com minikube ip e depois veja a porta com kubectl get vc -n namespacea
+
+  # type: LoadBalancer
+  # externalIPs:
+  #   - 192.168.64.16
+  # acesse usando externalIP:porta
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+    
+  selector:
+    app: techleads-example

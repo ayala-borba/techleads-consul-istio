@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techleads-example
+  namespace: namespacea
+  labels:
+    app: techleads-example
+    version: techleads-example
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techleads-example
+      version: techleads-example
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'false' 
+      labels:
+        app: techleads-example
+        version: techleads-example
+    spec:
+      serviceAccountName: default
+      initContainers:
+        - name: example-init-container
+          image: "lukascaska/example-init-container:v1"
+          imagePullPolicy: "Always"
+          command: ["/bin/sh","-c","node index.js"]
+          volumeMounts:
+            - name: init-directory
+              mountPath: /data  
+          env:
+          - name: INIT_VARIABLE
+            value: "quarta-feira"
+      
+      containers:
+        - name: techleads-example
+          image: "lukascaska/example-container:v1"
+          
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          
+          imagePullPolicy: Always
+          
+          command: ["/bin/sh","-c","node index.js"]
+          
+          env:
+          - name: CONTAINER_VARIABLE
+            value: "container-test"
+
+          volumeMounts:
+          
+            - name: techleads-example-data
+              mountPath: /configmap
+
+            - name: init-directory
+              mountPath: /data
+          
+          resources:
+            limits:
+              cpu: 1
+              memory: 1536Mi
+            requests:
+              cpu: 128m
+              memory: 128Mi
+      
+      volumes:
+
+      - name: init-directory
+        emptyDir: {}
+      
+      - name: techleads-example-data
+        configMap:
+          name: techleads-example-data
+          defaultMode: 0700
