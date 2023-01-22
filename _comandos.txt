@@ -1,0 +1,48 @@
+=========
+
+GitHub: https://lukascaska.github.io/src-pages-istio
+        https://github.com/lucassaleszup/techleads-consul-istio
+
+=========
+
+Limpar as instalações:
+
+kubectl -n techleads get deployments kubectl -n techleads delete deployment nome
+ kubectl -n techleads get destinationrules kubectl -n techleads delete destinationrules nome
+ kubectl -n techleads get virtualservices kubectl -n techleads delete virtualservices nome
+
+minikube stop -p istio
+minikube delete -p istio
+
+=========
+
+Aplicar os manifestos
+
+kubectl apply -f service.yaml kubectl apply -f deployment-v1.yaml kubectl apply -f deployment-v2.yaml kubectl apply -f destinationrules.yaml kubectl apply -f virtualservices_router.yaml
+
+=========
+
+Obter informações sobre as execuções
+
+kubectl -n techleads get pods
+ kubectl -n techleads port-forward nomedapod_integration 8081
+
+Kubectl describe pod -n techleads nomedapod
+
+kubectl -n techleads logs techleadsintegrationv1-5dfbfd5b87-ssfs6 techleadsintegrationv1 -f --since 1m
+
+=========
+
+Pessoal, pra quem quiser usar o Kiali que vem com o Istio, você deve aplicar esse yml 
+*** Kiali is an observability console for Istio with service mesh configuration capabilities.
+
+ Secret.yml --- 
+apiVersion: v1 kind: Secret 
+metadata:   name: kiali   namespace: istio-system   labels:     app: kiali 
+type: Opaque 
+data:   username: YWRtaW4=   passphrase: YWRtaW4= 
+o usuário e a senha desse Kiali é admin/admin 
+lembre-se de identar o arquivo e pra chamar o kiali, basta executar este comando:
+ istioctl dashboard kiali
+
+=========
